@@ -7,10 +7,21 @@ Window {
   visible: true
   width: 600
   height: 400
+  color: "black"
 
   Rectangle {
     anchors.fill: parent
     color: "white"
     radius: 25
+
+    Repeater {
+      model: LaunchSite.appImages
+      AppImage {
+        name: modelData.name
+        onClicked: {
+          modelData.launch();
+        }
+      }
+    }
   }
 }
