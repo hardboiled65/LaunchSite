@@ -1,4 +1,5 @@
 import QtQuick 2.12
+import QtQuick.Layouts 1.12
 import QtQuick.Window 2.12
 
 Window {
@@ -14,14 +15,17 @@ Window {
     color: "white"
     radius: 25
 
-    Repeater {
-      model: LaunchSite.appImages
-      AppImage {
-        name: modelData.name
-        onClicked: {
-          modelData.launch();
+    GridLayout {
+        columnSpacing: 60
+        Repeater {
+          model: LaunchSite.appImages
+          AppImage {
+            name: modelData.name
+            onClicked: {
+              modelData.launch();
+            }
+          }
         }
-      }
     }
   }
 }

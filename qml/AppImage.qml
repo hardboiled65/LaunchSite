@@ -17,6 +17,9 @@ Item {
 
   Text {
     text: root.name
+
+    width: root.width + 60
+    elide: Text.ElideMiddle
     anchors.bottom: parent.bottom
     anchors.horizontalCenter: parent.horizontalCenter
   }
