@@ -80,11 +80,14 @@ class AppImage:
     def offset(self):
         return self._offset
 
-    def save_metadata(self):
+    def save_metadata(self, cache_dir):
         self._make_squashfs()
         unsquashed = self._unsquashfs()
 
         # Do save things.
+        # Make directory if not.
+        if not os.path.isdir(cache_dir):
+            os.makedirs(cache_dir)
         desktop = None
         icons = None
         icon = None
@@ -93,6 +96,8 @@ class AppImage:
         for i in contents:
             if i.endswith('.desktop'):
                 desktop = i
+        desktop_path = os.path.join(unsquashed, i)
+        shutil.copyfile(desktop_path, os.path.join(cache_dir, desktop))
         # Copy icons.
         # Copy icon.
 
