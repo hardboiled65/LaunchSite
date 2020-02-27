@@ -10,13 +10,15 @@ Item {
   width: 50
   height: 60
 
-  Text {
-    text: root.name
-  }
-
   Rectangle {
     anchors.fill: parent
     color: "yellow"
+  }
+
+  Text {
+    text: root.name
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
   }
 
   MouseArea {
