@@ -19,7 +19,10 @@ class LaunchSite(QObject):
     def _add_app_image(self, app_image):
         self._app_image_objects.append(app_image)
         ai = AppImageModel()
+
         ai.set_name(app_image.name)
+        ai.set_file(app_image.file)
+
         self._app_images.append(ai)
         self.app_images_changed.emit()
 
