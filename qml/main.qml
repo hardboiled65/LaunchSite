@@ -16,16 +16,16 @@ Window {
     radius: 25
 
     GridLayout {
-        columnSpacing: 60
-        Repeater {
-          model: LaunchSite.appImages
-          AppImage {
-            name: modelData.name
-            onClicked: {
-              modelData.launch();
-            }
+      columnSpacing: 60
+      Repeater {
+        model: LaunchSite.appImages
+        AppImage {
+          name: modelData.name
+          onClicked: {
+            modelData.launch();
           }
         }
+      }
     }
   }
 }
