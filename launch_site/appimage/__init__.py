@@ -98,7 +98,7 @@ class AppImage:
         for i in contents:
             if i.endswith('.desktop'):
                 desktop = i
-        desktop_path = os.path.join(unsquashed, i)
+        desktop_path = os.path.join(unsquashed, desktop)
         shutil.copyfile(desktop_path, os.path.join(cache_dir, desktop))
         # Copy icons.
         # Copy icon.
