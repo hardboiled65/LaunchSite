@@ -47,10 +47,10 @@ class LaunchSite(QObject):
             os.getenv('HOME'),
             '.local/share/launch-site/appimages'
         )
+        basename = os.path.basename(app_image_path)
+        cache_dir = os.path.join(cache_dir, basename)
         if os.path.isdir(cache_dir):
-            if os.path.isdir(app_image_path):
-                return True
-            return False
+            return True
         return False
 
     def _make_cache(self, app_image_path):
