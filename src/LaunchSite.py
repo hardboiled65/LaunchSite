@@ -36,6 +36,12 @@ class LaunchSite(QObject):
         self.app_image_added.emit(ai.file)
         self.app_images_changed.emit()
 
+    def _get_object_by_path(self, app_image_path):
+        for ai in self._app_image_objects:
+            if app_image_path == ai.file:
+                return ai
+        return None
+
     def _has_cache(self, app_image_path):
         cache_dir = os.path.join(
             os.getenv('HOME'),
@@ -46,6 +52,18 @@ class LaunchSite(QObject):
                 return True
             return False
         return False
+
+    def _make_cache(self, app_image_path):
+        cache_dir = os.path.join(
+            os.getenv('HOME'),
+            '.local/share/launch-site/appimages'
+        )
+        basename = os.path.basename(app_image_path)
+        # Get AppImage object by path.
+        ai = self._get_object_by_path(app_image_path)
+
+        # Save cache in ~/.local/share/launch-site/appimages/MyApp.AppImage/
+        ai.save_metadata(os.path.join(cache_dir, ai.name))
 
 
     # Notify signals
@@ -60,7 +78,8 @@ class LaunchSite(QObject):
         if self._has_cache(app_image_path):
             print('has cache')
         else:
-            print('no cache')
+            print('no cache. making...')
+            self._make_cache(app_image_path)
 
     appImages = Property('QVariantList', app_images, notify=app_images_changed)
 

@@ -53,7 +53,9 @@ class AppImage:
         contents = os.listdir('/tmp/appimage-' + self.md5)
         for i in contents:
             file_to_delete = os.path.join('/tmp/appimage-' + self.md5, i)
-            if os.path.isfile(file_to_delete):
+            if os.path.isfile(file_to_delete) or os.path.islink(file_to_delete):
+                os.remove(file_to_delete)
+            if os.path.isdir(file_to_delete) and os.path.islink(file_to_delete):
                 os.remove(file_to_delete)
             if os.path.isdir(file_to_delete):
                 shutil.rmtree(file_to_delete)
