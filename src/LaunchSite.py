@@ -1,6 +1,17 @@
 import os
+import sys
 from PySide2.QtCore import QObject, Property, Signal, Slot
 from .appimagemodel import AppImageModel
+
+sys.path.append('..')
+
+from launch_site.desktop_entry import DesktopEntry
+
+
+BASE_CACHE_DIR = cache_dir = os.path.join(
+    os.getenv('HOME'),
+    '.local/share/launch-site/appimages'
+)
 
 
 class LaunchSite(QObject):
@@ -42,6 +53,10 @@ class LaunchSite(QObject):
                 return ai
         return None
 
+    def _get_cache_dir_by_path(self, app_image_path):
+        basename = os.path.basename(app_image_path)
+        return os.path.join(BASE_CACHE_DIR, basename)
+
     def _has_cache(self, app_image_path):
         cache_dir = os.path.join(
             os.getenv('HOME'),
@@ -65,6 +80,14 @@ class LaunchSite(QObject):
         # Save cache in ~/.local/share/launch-site/appimages/MyApp.AppImage/
         ai.save_metadata(os.path.join(cache_dir, ai.name))
 
+    def _read_metadata(self, app_image_path):
+        cache_dir = self._get_cache_dir_by_path(app_image_path)
+        desktop = None
+        for i in os.listdir(cache_dir):
+            if i.endswith('.desktop'):
+                desktop = i
+        entry = DesktopEntry(os.path.join(cache_dir, desktop))
+
 
     # Notify signals
     @Signal
@@ -80,6 +103,7 @@ class LaunchSite(QObject):
         else:
             print('no cache. making...')
             self._make_cache(app_image_path)
+        self._read_metadata(app_image_path)
 
     appImages = Property('QVariantList', app_images, notify=app_images_changed)
 
