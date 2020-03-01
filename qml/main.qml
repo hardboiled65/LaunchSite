@@ -39,5 +39,21 @@ Window {
       }
       */
     }
+    Rectangle {
+      id: debugButton
+      anchors.bottom: parent.bottom
+      width: 80
+      height: 30
+      color: "grey"
+      Text {
+        text: 'click'
+      }
+      MouseArea {
+        anchors.fill: parent
+        onClicked: {
+          print('hello');
+        }
+      }
+    }
   }
 }

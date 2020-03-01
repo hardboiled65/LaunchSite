@@ -11,6 +11,7 @@ Item {
   height: 60
 
   Rectangle {
+    id: background
     anchors.fill: parent
     color: "yellow"
   }
@@ -19,6 +20,7 @@ Item {
     text: root.name
 
     width: root.width + 60
+    // width: this.implicitWidth
     elide: Text.ElideMiddle
     anchors.bottom: parent.bottom
     anchors.horizontalCenter: parent.horizontalCenter
@@ -27,7 +29,6 @@ Item {
   MouseArea {
     anchors.fill: parent
     onClicked: {
-      print('mousearea clicked');
       root.clicked();
     }
   }
