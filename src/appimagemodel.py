@@ -13,13 +13,17 @@ class AppImageModel(QObject):
         return self._file
 
     def set_file(self, file):
-        self._file = file
+        if file != self._file:
+            self._file = file
+            self.file_changed.emit()
 
     def name(self):
         return self._name
 
     def set_name(self, name):
-        self._name = name
+        if name != self._name:
+            self._name = name
+            self.name_changed.emit()
 
     # Change signals
     @Signal

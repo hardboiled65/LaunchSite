@@ -53,6 +53,11 @@ class LaunchSite(QObject):
                 return ai
         return None
 
+    def _get_model_by_path(self, app_image_path):
+        for aim in self._app_images:
+            if app_image_path == aim.file:
+                return aim
+
     def _get_cache_dir_by_path(self, app_image_path):
         basename = os.path.basename(app_image_path)
         return os.path.join(BASE_CACHE_DIR, basename)
@@ -87,6 +92,8 @@ class LaunchSite(QObject):
             if i.endswith('.desktop'):
                 desktop = i
         entry = DesktopEntry(os.path.join(cache_dir, desktop))
+        model_obj = self._get_model_by_path(app_image_path)
+        model_obj.set_name(entry.name)
 
 
     # Notify signals
