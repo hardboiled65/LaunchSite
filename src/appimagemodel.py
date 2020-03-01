@@ -8,6 +8,7 @@ class AppImageModel(QObject):
 
         self._name = ''
         self._file = ''
+        self._image = ''
 
     def file(self):
         return self._file
@@ -25,6 +26,14 @@ class AppImageModel(QObject):
             self._name = name
             self.name_changed.emit()
 
+    def image(self):
+        return self._image
+
+    def set_image(self, image):
+        if image != self._image:
+            self._image = image
+            self.image_changed.emit()
+
     # Change signals
     @Signal
     def name_changed(self):
@@ -32,6 +41,10 @@ class AppImageModel(QObject):
 
     @Signal
     def file_changed(self):
+        pass
+
+    @Signal
+    def image_changed(self):
         pass
 
     # QML Invokables
@@ -42,4 +55,5 @@ class AppImageModel(QObject):
 
     name = Property(str, name, set_name, notify=name_changed)
     file = Property(str, file, set_file, notify=file_changed)
+    image = Property(str, image, set_image, notify=image_changed)
 

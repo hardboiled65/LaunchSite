@@ -16,6 +16,13 @@ Item {
     color: "yellow"
   }
 
+  Image {
+    id: icon
+    width: 64
+    height: 64
+    source: '../assets/placeholder.png'
+  }
+
   Text {
     text: root.name
 

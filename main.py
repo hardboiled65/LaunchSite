@@ -7,6 +7,9 @@ from PySide2.QtGui import QGuiApplication
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
 app_images = []
 # /usr/local/appimages
 try:
@@ -28,7 +31,7 @@ if __name__ == '__main__':
 
     qmlRegisterType(AppImageModel, 'LaunchSite', 0, 1, 'AppImageModel')
 
-    engine.load('qml/main.qml')
+    engine.load(os.path.join(BASE_DIR, 'qml/main.qml'))
 
     for ai in app_images:
         launch_site._add_app_image(ai)
