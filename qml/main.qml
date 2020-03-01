@@ -16,16 +16,28 @@ Window {
     radius: 25
 
     GridLayout {
-      columnSpacing: 60
+      x: 20
+      y: 20
+
+      columnSpacing: 40
       Repeater {
         model: LaunchSite.appImages
         AppImage {
           name: modelData.name
+
           onClicked: {
             modelData.launch();
           }
         }
       }
+
+      /*
+      Rectangle {
+        id: debugRect
+        anchors.fill: parent
+        color: "#55ff0000"
+      }
+      */
     }
   }
 }
