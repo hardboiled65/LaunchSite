@@ -8,7 +8,7 @@ Window {
   visible: true
   width: 600
   height: 400
-  color: "black"
+  color: "transparent"
 
   Rectangle {
     anchors.fill: parent
@@ -42,6 +42,7 @@ Window {
     Rectangle {
       id: debugButton
       anchors.bottom: parent.bottom
+      anchors.bottomMargin: 15
       width: 80
       height: 30
       color: "grey"
