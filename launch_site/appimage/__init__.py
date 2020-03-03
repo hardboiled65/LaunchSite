@@ -100,6 +100,10 @@ class AppImage:
                 desktop = i
         desktop_path = os.path.join(unsquashed, desktop)
         shutil.copyfile(desktop_path, os.path.join(cache_dir, desktop))
+        # Save md5.
+        f = open(os.path.join(cache_dir, 'md5'), 'w')
+        f.write(self.md5)
+        f.close()
         # Copy icons.
         # Copy icon.
 
