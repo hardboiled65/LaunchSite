@@ -1,6 +1,6 @@
 import os
 import sys
-from launch_site.appimage import AppImage
+from launchsite.appimage import AppImage
 from src.LaunchSite import LaunchSite
 from src.appimagemodel import AppImageModel
 from PySide2.QtGui import QGuiApplication

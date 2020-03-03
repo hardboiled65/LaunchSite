@@ -5,7 +5,7 @@ from .appimagemodel import AppImageModel
 
 sys.path.append('..')
 
-from launch_site.desktop_entry import DesktopEntry
+from launchsite.desktop_entry import DesktopEntry
 
 
 BASE_CACHE_DIR = cache_dir = os.path.join(
