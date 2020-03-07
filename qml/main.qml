@@ -18,7 +18,7 @@ Window {
     Flow {
       x: 20
       y: 20
-      width: parent.width
+      width: parent.width - (this.y * 2)
 
       // columnSpacing: 40
       spacing: 40
