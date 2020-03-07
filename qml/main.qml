@@ -15,11 +15,13 @@ Window {
     color: "white"
     radius: 25
 
-    GridLayout {
+    Flow {
       x: 20
       y: 20
+      width: parent.width
 
-      columnSpacing: 40
+      // columnSpacing: 40
+      spacing: 40
       Repeater {
         model: LaunchSite.appImages
         AppImage {
